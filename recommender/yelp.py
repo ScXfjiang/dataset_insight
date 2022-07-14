@@ -13,25 +13,32 @@ class Yelp(object):
         self.review_json_list = []
         self.user_json_list = []
         self.business_json_list = []
-        # with open(
-        #     os.path.join(dataset_path, "yelp_academic_dataset_review.json"), "rb"
-        # ) as f:
-        #     for line in f:
-        #         self.review_json_list.append(json.loads(line))
+        with open(
+            os.path.join(dataset_path, "yelp_academic_dataset_review.json"), "rb"
+        ) as f:
+            for line in f:
+                self.review_json_list.append(json.loads(line))
         with open(
             os.path.join(dataset_path, "yelp_academic_dataset_user.json"), "rb"
         ) as f:
             for line in f:
                 self.user_json_list.append(json.loads(line))
-        # with open(
-        #     os.path.join(dataset_path, "yelp_academic_dataset_business.json"), "rb"
-        # ) as f:
-        #     for line in f:
-        #         self.business_json_list.append(json.loads(line))
+        with open(
+            os.path.join(dataset_path, "yelp_academic_dataset_business.json"), "rb"
+        ) as f:
+            for line in f:
+                self.business_json_list.append(json.loads(line))
 
 
 if __name__ == "__main__":
     yelp = Yelp("/Users/xfjiang/workspace/dataset/yelp")
+    # number of ratings: 6990280
+    num_review = len(yelp.review_json_list)
+    # number of users: 1987897
+    num_user = len(yelp.user_json_list)
+    # number of businesses: 150346
+    num_businee = len(yelp.business_json_list)
+    # review counts from users
     review_counts = []
     for user_json in yelp.user_json_list:
         review_counts.append(int(user_json["review_count"]))
@@ -44,3 +51,4 @@ if __name__ == "__main__":
     print("num of users with num of reviews >= 10: {}".format((review_counts >= 10).sum()))     # 726519
     print("num of users with num of reviews >= 20: {}".format((review_counts >= 20).sum()))     # 436498
     print("num of users with num of reviews >= 100: {}".format((review_counts >= 100).sum()))   # 91774
+    
