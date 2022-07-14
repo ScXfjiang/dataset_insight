@@ -43,7 +43,7 @@ if __name__ == "__main__":
 
         pass
 
-    if True:
+    if False:
         # text review: each text review has at least one character
         char_cnts = []
         for review_json in yelp.review_json_list:
@@ -89,3 +89,5 @@ if __name__ == "__main__":
         )  # 91774
 
         pass
+
+    pass
