@@ -27,10 +27,6 @@ class AmazonDatasetIf(object):
 
 
 class AmazonElectronics(AmazonDatasetIf):
-    """
-    http://jmcauley.ucsd.edu/data/amazon/links.html
-    """
-
     def __init__(self, file_path):
         super(AmazonElectronics, self).__init__(file_path)
         print("number of user: {}".format(len(self.user_ids)))  # 192403
@@ -39,10 +35,6 @@ class AmazonElectronics(AmazonDatasetIf):
 
 
 class AmazonVideoGames(AmazonDatasetIf):
-    """
-    http://jmcauley.ucsd.edu/data/amazon/links.html
-    """
-
     def __init__(self, file_path):
         super(AmazonVideoGames, self).__init__(file_path)
         print("number of user: {}".format(len(self.user_ids)))  # 24303
@@ -51,10 +43,6 @@ class AmazonVideoGames(AmazonDatasetIf):
 
 
 class AmazonGourmetFoods(AmazonDatasetIf):
-    """
-    http://jmcauley.ucsd.edu/data/amazon/links.html
-    """
-
     def __init__(self, file_path):
         super(AmazonGourmetFoods, self).__init__(file_path)
         print("number of user: {}".format(len(self.user_ids)))  # 14681
