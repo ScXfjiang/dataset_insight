@@ -23,6 +23,7 @@ class AmazonDatasetIf(object):
                     float(js["overall"]),
                     str(js["reviewText"]),
                 ]
+
             self.user_ids = set(self.data["user_id"])
             self.item_ids = set(self.data["item_id"])
             self.item_id2doc = {}
@@ -34,59 +35,100 @@ class AmazonDatasetIf(object):
                 doc = list(group["text_review"])
                 self.user_id2doc[user_id] = doc
 
+    def info(self):
+        print(self.name())
+        print("*" * 20 + "Basic Statistics" + "*" * 20)
+        num_user = len(self.user_ids)
+        print("number of user: {}".format(num_user))
+        num_item = len(self.item_ids)
+        print("number of item: {}".format(num_item))
+        num_rating = len(self.data)
+        print("number of rating: {}".format(num_rating))
+        text_review = self.data["text_review"]
+        num_empty_review = (text_review == "").sum()
+        print("{} empty text reviews".format(num_empty_review))
 
-class AmazonElectronics(AmazonDatasetIf):
-    def __init__(self, path):
-        super(AmazonElectronics, self).__init__(path)
-        print("number of user: {}".format(len(self.user_ids)))  # 192403
-        print("number of item: {}".format(len(self.item_ids)))  # 63001
+        print("*" * 20 + "Rating(Review) Statistics w.r.t. Item" + "*" * 20)
+        print(
+            "average num of rating w.r.t. item: {}".format(
+                float(float(num_rating) / num_item)
+            )
+        )
+        cnt_list = []
+        for _, doc in self.item_id2doc.items():
+            cnt_list.append(len(doc))
+        cnt_list = np.array(cnt_list)
+        print(
+            "{} (of {} items) have >= 5 text reviews".format(
+                np.count_nonzero(cnt_list >= 5), num_item
+            )
+        )
+        print(
+            "{} (of {} items) have >= 10 text reviews".format(
+                np.count_nonzero(cnt_list >= 10), num_item
+            )
+        )
+        print(
+            "{} (of {} items) have >= 20 text reviews".format(
+                np.count_nonzero(cnt_list >= 20), num_item
+            )
+        )
 
+        print("*" * 20 + "Rating(Review) Statistics w.r.t. User" + "*" * 20)
+        print(
+            "average num of rating w.r.t. user: {}".format(
+                float(float(num_rating) / num_user)
+            )
+        )
+        cnt_list = []
+        for _, doc in self.user_id2doc.items():
+            cnt_list.append(len(doc))
+        cnt_list = np.array(cnt_list)
+        print(
+            "{} (of {} users) have >= 5 text reviews".format(
+                np.count_nonzero(cnt_list >= 5), num_user
+            )
+        )
+        print(
+            "{} (of {} users) have >= 10 text reviews".format(
+                np.count_nonzero(cnt_list >= 5), num_user
+            )
+        )
+        print(
+            "{} (of {} users) have >= 20 text reviews".format(
+                np.count_nonzero(cnt_list >= 5), num_user
+            )
+        )
 
-class AmazonVideoGames(AmazonDatasetIf):
-    def __init__(self, path):
-        super(AmazonVideoGames, self).__init__(path)
-        print("number of user: {}".format(len(self.user_ids)))  # 24303
-        print("number of item: {}".format(len(self.item_ids)))  # 10672
+    def name(self):
+        raise NotImplementedError
 
 
 class AmazonGourmetFoods(AmazonDatasetIf):
     def __init__(self, path):
         super(AmazonGourmetFoods, self).__init__(path)
 
-        print("*" * 20 + "Basic Statistics" + "*" * 20)
-        num_user = len(self.user_ids)
-        print("number of user: {}".format(num_user))  # 14681
-        num_item = len(self.item_ids)
-        print("number of item: {}".format(num_item))  # 8713
-        num_rating = len(self.data)
-        print("number of rating: {}".format(num_rating))  # 151254
 
-        text_review = self.data["text_review"]
-        print(type(text_review))
-        
+class AmazonVideoGames(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonVideoGames, self).__init__(path)
 
-        print("*" * 20 + "Rating(Review) Statistics w.r.t. item" + "*" * 20)
-        print(
-            "average num of rating w.r.t. item: {}".format(
-                float(float(num_rating) / num_item)
-            )  # 17.4
-        )
 
-        print("*" * 20 + "Rating(Review) Statistics w.r.t. user" + "*" * 20)
-        print(
-            "average num of rating w.r.t. user: {}".format(
-                float(float(num_rating) / num_user)
-            )  # 10.3
-        )
+class AmazonElectronics(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonElectronics, self).__init__(path)
 
 
 if __name__ == "__main__":
-    # amazon_electronics_dataset = AmazonElectronics(
-    #     "/home/people/22200056/workspace/dataset/reviews_Electronics_5.json"
-    # )
-    # amazon_video_games_dataset = AmazonVideoGames(
-    #     "/home/people/22200056/workspace/dataset/reviews_Video_Games_5.json"
-    # )
-    amazon_video_games_dataset = AmazonGourmetFoods(
-        "/home/people/22200056/workspace/dataset/reviews_Grocery_and_Gourmet_Food_5.json"
+    amazon_foods = AmazonGourmetFoods(
+        "/Users/xfjiang/workspace/dataset/reviews_Grocery_and_Gourmet_Food_5.json"
     )
+    amazon_foods.info()
+    amazon_video_games = AmazonVideoGames(
+        "/Users/xfjiang/workspace/dataset/reviews_Video_Games_5.json"
+    )
+    amazon_video_games.info()
+    amazon_electronics = AmazonElectronics(
+        "/Users/xfjiang/workspace/dataset/reviews_Electronics_5.json"
+    )
+    amazon_electronics.info()
