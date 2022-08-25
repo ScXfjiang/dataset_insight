@@ -46,7 +46,11 @@ class AmazonDatasetIf(object):
         print("number of rating: {}".format(num_rating))
         text_review = self.data["text_review"]
         num_empty_review = (text_review == "").sum()
-        print("{} empty text reviews".format(num_empty_review))
+        print(
+            "{} empty text reviews. ({:.2%})".format(
+                num_empty_review, float(float(num_empty_review) / num_rating)
+            )
+        )
 
         print("*" * 20 + "Rating(Review) Statistics w.r.t. Item" + "*" * 20)
         print(
@@ -58,19 +62,28 @@ class AmazonDatasetIf(object):
         for _, doc in self.item_id2doc.items():
             cnt_list.append(len(doc))
         cnt_list = np.array(cnt_list)
+        x = np.count_nonzero(cnt_list >= 5)
         print(
-            "{} (of {} items) have >= 5 text reviews".format(
-                np.count_nonzero(cnt_list >= 5), num_item
+            "{} (of {} items) have >= 5 text reviews. ({:.2%})".format(
+                x, num_item, float(float(x) / num_item)
             )
         )
+        x = np.count_nonzero(cnt_list >= 10)
         print(
-            "{} (of {} items) have >= 10 text reviews".format(
-                np.count_nonzero(cnt_list >= 10), num_item
+            "{} (of {} items) have >= 10 text reviews. ({:.2%})".format(
+                x, num_item, float(float(x) / num_item)
             )
         )
+        x = np.count_nonzero(cnt_list >= 20)
         print(
-            "{} (of {} items) have >= 20 text reviews".format(
-                np.count_nonzero(cnt_list >= 20), num_item
+            "{} (of {} items) have >= 20 text reviews. ({:.2%})".format(
+                x, num_item, float(float(x) / num_item)
+            )
+        )
+        x = np.count_nonzero(cnt_list >= 50)
+        print(
+            "{} (of {} items) have >= 50 text reviews. ({:.2%})".format(
+                x, num_item, float(float(x) / num_item)
             )
         )
 
@@ -84,19 +97,28 @@ class AmazonDatasetIf(object):
         for _, doc in self.user_id2doc.items():
             cnt_list.append(len(doc))
         cnt_list = np.array(cnt_list)
+        x = np.count_nonzero(cnt_list >= 5)
         print(
-            "{} (of {} users) have >= 5 text reviews".format(
-                np.count_nonzero(cnt_list >= 5), num_user
+            "{} (of {} users) have >= 5 text reviews. ({:.2%})".format(
+                x, num_user, float(float(x) / num_user)
             )
         )
+        x = np.count_nonzero(cnt_list >= 10)
         print(
-            "{} (of {} users) have >= 10 text reviews".format(
-                np.count_nonzero(cnt_list >= 5), num_user
+            "{} (of {} users) have >= 10 text reviews. ({:.2%})".format(
+                x, num_user, float(float(x) / num_user)
             )
         )
+        x = np.count_nonzero(cnt_list >= 20)
         print(
-            "{} (of {} users) have >= 20 text reviews".format(
-                np.count_nonzero(cnt_list >= 5), num_user
+            "{} (of {} users) have >= 20 text reviews. ({:.2%})".format(
+                x, num_user, float(float(x) / num_user)
+            )
+        )
+        x = np.count_nonzero(cnt_list >= 50)
+        print(
+            "{} (of {} users) have >= 50 text reviews. ({:.2%})".format(
+                x, num_user, float(float(x) / num_user)
             )
         )
 
