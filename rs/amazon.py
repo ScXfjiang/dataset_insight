@@ -101,12 +101,12 @@ class AmazonDatasetIf(object):
         )
 
     def name(self):
-        raise NotImplementedError
+        return type(self).__name__
 
 
-class AmazonGourmetFoods(AmazonDatasetIf):
+class AmazonGroceryAndGourmetFoods(AmazonDatasetIf):
     def __init__(self, path):
-        super(AmazonGourmetFoods, self).__init__(path)
+        super(AmazonGroceryAndGourmetFoods, self).__init__(path)
 
 
 class AmazonVideoGames(AmazonDatasetIf):
@@ -120,7 +120,7 @@ class AmazonElectronics(AmazonDatasetIf):
 
 
 if __name__ == "__main__":
-    amazon_foods = AmazonGourmetFoods(
+    amazon_foods = AmazonGroceryAndGourmetFoods(
         "/Users/xfjiang/workspace/dataset/reviews_Grocery_and_Gourmet_Food_5.json"
     )
     amazon_foods.info()
