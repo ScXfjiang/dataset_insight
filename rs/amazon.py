@@ -1,12 +1,12 @@
 # TODO: find a better solution
 import os
+
 os.environ["KMP_DUPLICATE_LIB_OK"] = "True"
 
 import json
 import numpy as np
 import pandas as pd
 import torchtext
-
 
 
 class AmazonDatasetIf(object):
@@ -138,14 +138,54 @@ class AmazonDatasetIf(object):
         return type(self).__name__
 
 
-class AmazonGroceryAndGourmetFoods(AmazonDatasetIf):
+class AmazonInstantVideo(AmazonDatasetIf):
     def __init__(self, path):
-        super(AmazonGroceryAndGourmetFoods, self).__init__(path)
+        super(AmazonInstantVideo, self).__init__(path)
 
 
-class AmazonVideoGames(AmazonDatasetIf):
+class AmazonAppsForAndroid(AmazonDatasetIf):
     def __init__(self, path):
-        super(AmazonVideoGames, self).__init__(path)
+        super(AmazonAppsForAndroid, self).__init__(path)
+
+
+class AmazonAutomotive(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonAutomotive, self).__init__(path)
+
+
+class AmazonBaby(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonBaby, self).__init__(path)
+
+
+class AmazonBeauty(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonBeauty, self).__init__(path)
+
+
+class AmazonBooks(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonBooks, self).__init__(path)
+
+
+class AmazonCDsAndVinyl(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonCDsAndVinyl, self).__init__(path)
+
+
+class AmazonCellPhonesAndAccessories(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonCellPhonesAndAccessories, self).__init__(path)
+
+
+class AmazonClothingShoesAndJewelry(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonClothingShoesAndJewelry, self).__init__(path)
+
+
+class AmazonDigitalMusic(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonDigitalMusic, self).__init__(path)
 
 
 class AmazonElectronics(AmazonDatasetIf):
@@ -153,19 +193,185 @@ class AmazonElectronics(AmazonDatasetIf):
         super(AmazonElectronics, self).__init__(path)
 
 
+class AmazonGroceryAndGourmetFoods(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonGroceryAndGourmetFoods, self).__init__(path)
+
+
+class AmazonHealthAndPersonalCare(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonHealthAndPersonalCare, self).__init__(path)
+
+
+class AmazonHomeAndKitchen(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonHomeAndKitchen, self).__init__(path)
+
+
+class AmazonKindleStore(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonKindleStore, self).__init__(path)
+
+
+class AmazonMoviesAndTV(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonMoviesAndTV, self).__init__(path)
+
+
+class AmazonMusicalInstruments(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonMusicalInstruments, self).__init__(path)
+
+
+class AmazonOfficeProducts(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonOfficeProducts, self).__init__(path)
+
+
+class AmazonPatioLawnAndGarden(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonPatioLawnAndGarden, self).__init__(path)
+
+
+class AmazonPetSupplies(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonPetSupplies, self).__init__(path)
+
+
+class AmazonSportsAndOutdoors(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonSportsAndOutdoors, self).__init__(path)
+
+
+class AmazonToolsAndHomeImprovement(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonToolsAndHomeImprovement, self).__init__(path)
+
+
+class AmazonToysAndGames(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonToysAndGames, self).__init__(path)
+
+
+class AmazonVideoGames(AmazonDatasetIf):
+    def __init__(self, path):
+        super(AmazonVideoGames, self).__init__(path)
+
+
+amazon_dataset_path = "/Users/xfjiang/workspace/dataset/amazon"
+
 if __name__ == "__main__":
-    amazon_foods = AmazonGroceryAndGourmetFoods(
-        "/Users/xfjiang/workspace/dataset/reviews_Grocery_and_Gourmet_Food_5.json"
+    dataset = AmazonInstantVideo(
+        os.path.join(amazon_dataset_path, "reviews_Amazon_Instant_Video_5.json")
     )
-    amazon_foods.info()
+    dataset.info()
     print("\n\n")
-    # amazon_video_games = AmazonVideoGames(
-    #     "/Users/xfjiang/workspace/dataset/reviews_Video_Games_5.json"
-    # )
-    # amazon_video_games.info()
-    # print("\n\n")
-    # amazon_electronics = AmazonElectronics(
-    #     "/Users/xfjiang/workspace/dataset/reviews_Electronics_5.json"
-    # )
-    # amazon_electronics.info()
-    # print("\n\n")
+    dataset = AmazonAppsForAndroid(
+        os.path.join(amazon_dataset_path, "reviews_Apps_for_Android_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonAutomotive(
+        os.path.join(amazon_dataset_path, "reviews_Automotive_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonBaby(os.path.join(amazon_dataset_path, "reviews_Baby_5.json"))
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonBeauty(os.path.join(amazon_dataset_path, "reviews_Beauty_5.json"))
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonBooks(os.path.join(amazon_dataset_path, "reviews_Books_5.json"))
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonCDsAndVinyl(
+        os.path.join(amazon_dataset_path, "reviews_CDs_and_Vinyl_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonCellPhonesAndAccessories(
+        os.path.join(amazon_dataset_path, "reviews_Cell_Phones_and_Accessories_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonClothingShoesAndJewelry(
+        os.path.join(amazon_dataset_path, "reviews_Clothing_Shoes_and_Jewelry_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonDigitalMusic(
+        os.path.join(amazon_dataset_path, "reviews_Digital_Music_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonElectronics(
+        os.path.join(amazon_dataset_path, "reviews_Electronics_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonGroceryAndGourmetFoods(
+        os.path.join(amazon_dataset_path, "reviews_Grocery_and_Gourmet_Food_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonHealthAndPersonalCare(
+        os.path.join(amazon_dataset_path, "reviews_Health_and_Personal_Care_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonHomeAndKitchen(
+        os.path.join(amazon_dataset_path, "reviews_Home_and_Kitchen_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonKindleStore(
+        os.path.join(amazon_dataset_path, "reviews_Kindle_Store_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonMoviesAndTV(
+        os.path.join(amazon_dataset_path, "reviews_Movies_and_TV_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonMusicalInstruments(
+        os.path.join(amazon_dataset_path, "reviews_Musical_Instruments_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonOfficeProducts(
+        os.path.join(amazon_dataset_path, "reviews_Office_Products_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonPatioLawnAndGarden(
+        os.path.join(amazon_dataset_path, "reviews_Patio_Lawn_and_Garden_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonPetSupplies(
+        os.path.join(amazon_dataset_path, "reviews_Pet_Supplies_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonSportsAndOutdoors(
+        os.path.join(amazon_dataset_path, "reviews_Sports_and_Outdoors_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonToolsAndHomeImprovement(
+        os.path.join(amazon_dataset_path, "reviews_Tools_and_Home_Improvement_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonToysAndGames(
+        os.path.join(amazon_dataset_path, "reviews_Toys_and_Games_5.json")
+    )
+    dataset.info()
+    print("\n\n")
+    dataset = AmazonVideoGames(
+        os.path.join(amazon_dataset_path, "reviews_Video_Games_5.json")
+    )
+    dataset.info()
+    print("\n\n")
