@@ -146,11 +146,14 @@ if __name__ == "__main__":
         "/Users/xfjiang/workspace/dataset/reviews_Grocery_and_Gourmet_Food_5.json"
     )
     amazon_foods.info()
+    print("\n\n")
     amazon_video_games = AmazonVideoGames(
         "/Users/xfjiang/workspace/dataset/reviews_Video_Games_5.json"
     )
     amazon_video_games.info()
+    print("\n\n")
     amazon_electronics = AmazonElectronics(
         "/Users/xfjiang/workspace/dataset/reviews_Electronics_5.json"
     )
     amazon_electronics.info()
+    print("\n\n")
