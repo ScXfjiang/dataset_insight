@@ -1,6 +1,12 @@
+# TODO: find a better solution
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"] = "True"
+
 import json
 import numpy as np
 import pandas as pd
+import torchtext
+
 
 
 class AmazonDatasetIf(object):
@@ -39,12 +45,18 @@ class AmazonDatasetIf(object):
         print(self.name())
         print("*" * 20 + "Basic Statistics" + "*" * 20)
         num_user = len(self.user_ids)
-        print("number of user: {}".format(num_user))
+        print("# of user: {}".format(num_user))
         num_item = len(self.item_ids)
-        print("number of item: {}".format(num_item))
+        print("# of item: {}".format(num_item))
         num_rating = len(self.data)
-        print("number of rating: {}".format(num_rating))
+        print("# of rating: {}".format(num_rating))
         text_review = self.data["text_review"]
+        tokenizer = torchtext.data.get_tokenizer("basic_english")
+        num_words = sum([len(tokenizer(text)) for text in text_review])
+        print("#words: {}".format(num_words))
+        print(
+            "avg #word in each review: {}".format(float(float(num_words) / num_rating))
+        )
         num_empty_review = (text_review == "").sum()
         print(
             "{} empty text reviews. ({:.2%})".format(
@@ -147,13 +159,13 @@ if __name__ == "__main__":
     )
     amazon_foods.info()
     print("\n\n")
-    amazon_video_games = AmazonVideoGames(
-        "/Users/xfjiang/workspace/dataset/reviews_Video_Games_5.json"
-    )
-    amazon_video_games.info()
-    print("\n\n")
-    amazon_electronics = AmazonElectronics(
-        "/Users/xfjiang/workspace/dataset/reviews_Electronics_5.json"
-    )
-    amazon_electronics.info()
-    print("\n\n")
+    # amazon_video_games = AmazonVideoGames(
+    #     "/Users/xfjiang/workspace/dataset/reviews_Video_Games_5.json"
+    # )
+    # amazon_video_games.info()
+    # print("\n\n")
+    # amazon_electronics = AmazonElectronics(
+    #     "/Users/xfjiang/workspace/dataset/reviews_Electronics_5.json"
+    # )
+    # amazon_electronics.info()
+    # print("\n\n")
