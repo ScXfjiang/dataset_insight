@@ -1,3 +1,6 @@
+# Amazon dataset
+[Amazon dataset](http://jmcauley.ucsd.edu/data/amazon/links.html)
+
 |                             |  #users |  #items |  #reviews | avg #reviews w.r.t. item | avg #reviews w.r.t. user |     #words    | avg #words of review |
 |:---------------------------:|:-------:|:-------:|:---------:|:------------------------:|:------------------------:|:-------------:|:-------------------------:|
 |        Instant Video        |  5,130  |  1,685  |   37,126  |            22            |             7            |   3,986,890   |            107            |
