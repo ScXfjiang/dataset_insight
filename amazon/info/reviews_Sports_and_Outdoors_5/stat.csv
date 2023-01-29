@@ -1,0 +1,2 @@
+,num_user,num_item,num_rating(review),avg_review_per_item,total_words,avg_words_per_review,empty_review
+0,35598,18357,296337,16.142997221768262,29338511,99.00387396781367,123
