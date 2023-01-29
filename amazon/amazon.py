@@ -78,10 +78,11 @@ class Amazon(object):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--path", default="", type=str)
-    parser.add_argument("--log_dir", default="log", type=str)
     args = parser.parse_args()
-    
-    if not os.path.exists(args.log_dir):
-        os.makedirs(args.log_dir)
-    dataset = Amazon(args.path, args.log_dir)
+
+    log_dir = os.path.join("info", os.path.basename(args.path)[:-5])
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+
+    dataset = Amazon(args.path, log_dir)
     dataset.get_info()
